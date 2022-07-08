@@ -1,7 +1,20 @@
 // Modules to control application life and create native browser window
 const {app, BrowserWindow, Tray, Menu} = require('electron')
 const path=require('path')
+const puppeteer=require("puppeteer");
+
 let tray = null
+
+
+async function puppeteerInit() {
+
+  const browser = await puppeteer.launch();
+  const page = await browser.newPage();
+  await page.goto('https://google.com.com');
+  await page.screenshot({path: 'example.png'});
+
+  // await browser.close();
+}
 
 function createWindow () {
   // Create the browser window.
@@ -16,6 +29,11 @@ function createWindow () {
   // and load the index.html of the app.
   mainWindow.loadFile('index.html')
 
+
+  //Test puppeteer
+  puppeteerInit()
+
+
   // Open the DevTools.
   // mainWindow.webContents.openDevTools()
 }
@@ -26,7 +44,7 @@ function createWindow () {
 app.whenReady().then(() => {
   createWindow()
 
-  tray = new Tray(path.join(__dirname, 'assests/no_bg_icon.png'))
+  tray = new Tray(path.join(__dirname, 'assests/icon.png'))
   const contextMenu = Menu.buildFromTemplate([
     { label: 'Item1', type: 'radio' },
     { label: 'Item2', type: 'radio' },
