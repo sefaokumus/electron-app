@@ -9,5 +9,7 @@
   "devDependencies": {
     "electron": "^19.0.6"
   },
-  "dependencies": {}
+  "dependencies": {
+    "puppeteer": "^15.3.2"
+  }
 }
