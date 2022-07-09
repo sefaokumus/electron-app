@@ -31,7 +31,7 @@ function createWindow () {
 
 
   //Test puppeteer
-  puppeteerInit()
+  
 
 
   // Open the DevTools.
@@ -42,12 +42,11 @@ function createWindow () {
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
 app.whenReady().then(() => {
-  createWindow()
 
   tray = new Tray(path.join(__dirname, 'assests/icon.png'))
   const contextMenu = Menu.buildFromTemplate([
-    { label: 'Item1', type: 'radio' },
-    { label: 'Item2', type: 'radio' },
+    { label: 'Open Window', type: 'radio', click: () => createWindow() },
+    { label: 'Init puppeteer', type: 'radio' , click : () => puppeteerInit()},
     { label: 'Item3', type: 'radio', checked: true },
     { label: 'Item4', type: 'radio' }
   ])
